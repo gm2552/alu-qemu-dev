@@ -51,7 +51,25 @@ Now download and unzip the image files with the following commands:
 cd ~/alu-emu
 wget https://github.com/gm2552/alu-qemu-dev/raw/master/cloud.img
 wget https://github.com/gm2552/alu-qemu-dev/raw/master/flash0.img.zip
-wget https://github.com/gm2552/alu-qemu-dev/blob/master/flash1.img.zip
+wget https://github.com/gm2552/alu-qemu-dev/raw/master/flash1.img.zip
 unzip flash0.img.zip
 unzip flash1.img.zip
 ```
+
+### Download Ubuntu Cloud Image File
+You can use pretty much any Ubuntu cloud image, but 16.04 is the recommended image.  Download the Ubuntu Cloud image using the following command.
+
+```
+cd ~/alu-emu
+wget https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-arm64-uefi1.img
+```
+
+### Launch The Emulator
+
+You are now ready to launch the emulator.  Qemu has several switching that you can lookup to tweak how you want your emulator to run.  The following is a default configuration that runs 4 virtual processes using 2GB of memory.  You will not be able to ssh or sftp into this emulator.  Instead it will run like you were at an actual terminal.  However, you CAN access the network from inside the emulator assuming that your Ubuntu host has network capabilities.
+
+```
+qemu-system-aarch64 -m 2048 -smp 4 -cpu cortex-a57 -M virt -nographic   -pflash flash0.img   -pflash flash1.img   -drive if=none,file=ubuntu-16.04-server-cloudimg-arm64-uefi1.img,id=hd0   -device virtio-blk-device,drive=hd0   -drive if=none,id=cloud,file=cloud.img   -device virtio-blk-device,drive=cloud   -netdev user,id=user0 -device virtio-net-device,netdev=user0
+```
+
+During the bootup sequence, you may see message error message like no video found or press any key.  You can ignore these and the system will continue to load.  It may take 3-5 minutes for the system to load.
