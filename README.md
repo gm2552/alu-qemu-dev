@@ -72,4 +72,11 @@ You are now ready to launch the emulator.  Qemu has several switching that you c
 qemu-system-aarch64 -m 2048 -smp 4 -cpu cortex-a57 -M virt -nographic   -pflash flash0.img   -pflash flash1.img   -drive if=none,file=ubuntu-16.04-server-cloudimg-arm64-uefi1.img,id=hd0   -device virtio-blk-device,drive=hd0   -drive if=none,id=cloud,file=cloud.img   -device virtio-blk-device,drive=cloud   -netdev user,id=user0 -device virtio-net-device,netdev=user0
 ```
 
-During the bootup sequence, you may see message error message like no video found or press any key.  You can ignore these and the system will continue to load.  It may take 3-5 minutes for the system to load.
+During the bootup sequence, you may see message error message like no video found or press any key.  You can ignore these and the system will continue to load.  It may take 3-5 minutes for the system to load.  You will NOT be able to login for the first time until you see a log message that says "END SSH HOST KEY KEYS."  The system needs to apply the default user configuration and passwork from the cloud.img file which can take a little longer the first time the system boots.
+
+After the system completes booting, you can use the following credentials to log in.  NOTE: You may need to hit the return key a couple of times to bring up the login prompt.
+
+```
+user: ubuntu
+password: asdfqwer
+```
