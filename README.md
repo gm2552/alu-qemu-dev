@@ -49,5 +49,9 @@ Now download and unzip the image files with the following commands:
 
 ```
 cd ~/alu-emu
-
+wget https://github.com/gm2552/alu-qemu-dev/raw/master/cloud.img
+wget https://github.com/gm2552/alu-qemu-dev/blob/master/flash0.img.zip
+wget https://github.com/gm2552/alu-qemu-dev/blob/master/flash1.img.zip
+unzip flash0.img.zip
+unzip flash1.img.zip
 ```
