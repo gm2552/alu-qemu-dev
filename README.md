@@ -80,3 +80,15 @@ After the system completes booting, you can use the following credentials to log
 user: ubuntu
 password: asdfqwer
 ```
+
+## Emulator Disk Resize
+
+After some use, you most likely start filling up the limited amount of disk allocated in the linux image file and will want to add some more space.  To allocate more space, use the command template 'qemu-img resize <yourlinuxdiskimage> +xG'.  For example, to add 10 GB of space to the linux image in these instructions, use the following command:
+  
+```
+qemu-img resize ubuntu-16.04-server-cloudimg-arm64-uefi1.img +10G
+```
+
+## Getting Files Of The Emulator
+
+Using these instructions, the emulator is not accessable from outside the terminal.  However, from inside the emulator, you should have full network access to the outside.  You can use command line tools like sftp to transfer files from inside the emulator to another machine. 
